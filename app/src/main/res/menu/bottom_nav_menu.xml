@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="MyFridge"
+        android:icon="@drawable/fridge_icon"
+        android:id="@+id/myfridge" />
+    <item android:title="Recipes"
+        android:icon="@drawable/recipe_icon"
+        android:id="@+id/recipes"/>
+    <item android:title="Add"
+        android:icon="@drawable/add_icon"
+        android:id="@+id/add_item"/>
+    <item android:title="List"
+        android:icon="@drawable/list_icon"
+        android:id="@+id/shopping_list"/>
+</menu>
