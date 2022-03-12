@@ -1,5 +1,6 @@
 package com.example.myfridge;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -39,12 +40,15 @@ public class CategoryFragment extends Fragment {
         setRecyclerAdapter();
     }
 
+
+
     public void setRecyclerAdapter(){
-        RecyclerAdapter adapter = new RecyclerAdapter(((MainActivity) getActivity()).getProductsList(title)); //pass good array
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        RecyclerAdapter adapter = new RecyclerAdapter((MainActivity)getActivity(), (MainActivity)getContext(), ((MainActivity) getActivity()).getProductsList(title)); //pass good array
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager((MainActivity)getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-
     }
+
+
 }

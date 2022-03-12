@@ -74,5 +74,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    void updateData(String row_id, String name, String category, String amount, String unit, String dateOfExpiry){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_NAME, name);
+        cv.put(COLUMN_CATEGORY, category);
+        cv.put(COLUMN_AMOUNT, amount);
+        cv.put(COLUMN_UNIT, unit);
+        cv.put(COLUMN_DATEOFEXPIRY, dateOfExpiry);
 
+        long result = db.update(TABLE_NAME, cv,  "_id=?", new String[] {row_id});
+        if(result == -1){
+            Toast.makeText(context, "Failed to Update.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully Updated!", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

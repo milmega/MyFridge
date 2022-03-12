@@ -6,6 +6,7 @@ import android.media.Image;
 import java.util.Date;
 
 public class Product {
+    private String id;
     private String name;
     private String category;
     private String amount;
@@ -14,7 +15,8 @@ public class Product {
     private int barcode;
     private Icon icon;
 
-    public Product(String name, String category, String dateOfExpiry, String amount, String unit){
+    public Product(String id, String name, String category, String dateOfExpiry, String amount, String unit){
+        this.id = id;
         this.name = name;
         this.category = category;
         this.dateOfExpiry = dateOfExpiry;
@@ -22,13 +24,18 @@ public class Product {
         this.unit = unit;
     }
 
+    public void setId(String id){
+        this.id = id;
+    }
+    public  String getId(){
+        return id;
+    }
     public void setName(String name){
         this.name = name;
     }
     public String getName(){
         return name;
     }
-
     public void setCategory(String category){
         this.category = category;
     }
@@ -59,11 +66,9 @@ public class Product {
     public Icon getIcon(){
         return icon;
     }
-
     public void setUnit(String unit) {
         this.unit = unit;
     }
-
     public String getUnit() {
         return unit;
     }

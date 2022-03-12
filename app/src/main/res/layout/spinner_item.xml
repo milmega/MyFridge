@@ -6,6 +6,4 @@
     android:layout_height="wrap_content"
     android:textSize="25dp"
     android:gravity="left"
-    android:textColor="@color/black"
-
-    />
+    android:textColor="@color/black" />

@@ -5,13 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".CategoryFragment">
 
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:background="@color/super_light_blue"
         tools:layout_editor_absoluteX="113dp"
         tools:layout_editor_absoluteY="199dp" />
 

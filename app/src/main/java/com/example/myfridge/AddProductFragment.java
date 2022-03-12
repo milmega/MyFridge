@@ -102,19 +102,12 @@ public class AddProductFragment extends Fragment implements AdapterView.OnItemSe
                     toast.show();
                 }
                 else{
-                    //create and add product and clear all values or redirect to main view;
-                    Product product = new Product(name, cat, date, amount, unit);
-                    ((MainActivity) getActivity()).addProduct(product);
-
+                    //create and add product and clear all values or redirect to main viev
                     DatabaseHelper myDB = new DatabaseHelper(getContext());
                     myDB.addProduct(name, cat, amount,  unit, date);
-
                 }
-
             }
         });
-
-
         return view;
     }
 
