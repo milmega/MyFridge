@@ -2,8 +2,10 @@ package com.example.myfridge;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.text.InputType;
@@ -107,6 +109,13 @@ public class UpdateFragment extends Fragment {
                     //create and add product and clear all values or redirect to main viev
                     DatabaseHelper db = new DatabaseHelper(context);
                     db.updateData(id, name, category, amount, unit, dateOfExpiry);
+                    ((MainActivity) getActivity()).replaceFragment(new MyFridgeFragment());
+                    //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new MyFridgeFragment()).addToBackStack(null).commit();
+
+                    /* its working but it reloads full activity
+                    Intent reloadMain = new Intent(getActivity(), MainActivity.class);
+                    startActivity(reloadMain);
+                    getActivity().finish();*/
 
                 }
             }

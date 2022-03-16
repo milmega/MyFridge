@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     DatabaseHelper myDB;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         myDB = new DatabaseHelper(MainActivity.this);
-        storeDataInArray();
         replaceFragment(new MyFridgeFragment());
+
 
         binding.bottomNavigationBar.setOnItemSelectedListener(item -> {
 
@@ -66,18 +67,12 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new ShoppingListFragment());
                     break;
             }
-
             return true;
         });
     }
 
-
-
-    public void loadUpdateFragment(){
-        replaceFragment(new UpdateFragment());
-    }
-
-    private void replaceFragment(Fragment fragment){
+    public void replaceFragment(Fragment fragment){
+        storeDataInArray(); //whenever fragment is changed, data is updated
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
@@ -105,28 +100,16 @@ public class MainActivity extends AppCompatActivity {
                 String dateOfExpiry = cursor.getString(5);
 
                 Product product = new Product(id, name, category, dateOfExpiry, amount, unit);
-                //Log.i("--test--", id);
                 addProduct(product);
             }
         }
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        //Log.i("--test--", "nono");
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
-            //Log.i("--test--", "okok");
-            //finish();
-            recreate();
-            //finish();
-            /*finish();
-            overridePendingTransition(0, 0);
-            startActivity(getIntent());
-            overridePendingTransition(0, 0);*/
-        }
+    public void onBackPressed() {
+        super.onBackPressed();
+        replaceFragment(new MyFridgeFragment());
     }
-
 
     public ArrayList<Product> getProductsList(String title){
         return productsByCategories.get(title);

@@ -27,7 +27,6 @@ public class MyFridgeFragment extends Fragment {
 
         tabLayout = view.findViewById(R.id.tablayout);
         viewPager = view.findViewById(R.id.viewPager);
-
         VPAdapter vpAdapter = new VPAdapter(getChildFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
         vpAdapter.addFragment(new CategoryFragment("All"), "All");
