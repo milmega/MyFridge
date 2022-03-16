@@ -105,6 +105,7 @@ public class AddProductFragment extends Fragment implements AdapterView.OnItemSe
                     //create and add product and clear all values or redirect to main viev
                     DatabaseHelper myDB = new DatabaseHelper(getContext());
                     myDB.addProduct(name, cat, amount,  unit, date);
+                    ((MainActivity) getActivity()).replaceFragment(new MyFridgeFragment());
                 }
             }
         });

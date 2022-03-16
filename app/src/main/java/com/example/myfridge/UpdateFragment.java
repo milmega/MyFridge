@@ -110,13 +110,6 @@ public class UpdateFragment extends Fragment {
                     DatabaseHelper db = new DatabaseHelper(context);
                     db.updateData(id, name, category, amount, unit, dateOfExpiry);
                     ((MainActivity) getActivity()).replaceFragment(new MyFridgeFragment());
-                    //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new MyFridgeFragment()).addToBackStack(null).commit();
-
-                    /* its working but it reloads full activity
-                    Intent reloadMain = new Intent(getActivity(), MainActivity.class);
-                    startActivity(reloadMain);
-                    getActivity().finish();*/
-
                 }
             }
         });
