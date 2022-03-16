@@ -1,8 +1,10 @@
 package com.example.myfridge;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -65,15 +69,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         holder.itemRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, UpdateProduct.class);
-                intent.putExtra("id", String.valueOf(productsList.get(position).getId()));
-                intent.putExtra("name", String.valueOf(productsList.get(position).getName()));
-                intent.putExtra("category", String.valueOf(productsList.get(position).getCategory()));
-                intent.putExtra("amount", String.valueOf(productsList.get(position).getAmount()));
-                intent.putExtra("dateOfExpiry", String.valueOf(productsList.get(position).getDateOfExpiry()));
-                intent.putExtra("unit", String.valueOf(productsList.get(position).getUnit()));
-                activity.startActivityForResult(intent, 1);
-                //activity.startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString("id", String.valueOf(productsList.get(position).getId()));
+                bundle.putString("name", String.valueOf(productsList.get(position).getName()));
+                bundle.putString("category", String.valueOf(productsList.get(position).getCategory()));
+                bundle.putString("amount", String.valueOf(productsList.get(position).getAmount()));
+                bundle.putString("dateOfExpiry", String.valueOf(productsList.get(position).getDateOfExpiry()));
+                bundle.putString("unit", String.valueOf(productsList.get(position).getUnit()));
+
+                AppCompatActivity appActivity = (AppCompatActivity)v.getContext();
+                UpdateFragment updateFragment = new UpdateFragment();
+                updateFragment.setArguments(bundle);
+                appActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, updateFragment).addToBackStack(null).commit();
             }
         });
     }

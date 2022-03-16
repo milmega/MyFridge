@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     private HashMap<String, ArrayList<Product>> productsByCategories = new HashMap<>();
     private ActivityMainBinding binding;
-    private boolean initializeMap = false;
     DatabaseHelper myDB;
 
     @Override
@@ -73,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    public void loadUpdateFragment(){
+        replaceFragment(new UpdateFragment());
+    }
 
     private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
