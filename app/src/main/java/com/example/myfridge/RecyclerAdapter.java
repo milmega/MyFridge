@@ -80,7 +80,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         try{
             Date date = new Date();
             if(date.after(new SimpleDateFormat("dd/MM/yyyy").parse(expiryDate))){
-                holder.expirytxt.setText("Expired on: " + expiryDate);
+                holder.expirytxt.setText("EXPIRED ON: " + expiryDate);
                 holder.expirytxt.setTypeface(null, Typeface.BOLD);
             }
             else{

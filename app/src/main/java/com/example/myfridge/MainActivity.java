@@ -24,14 +24,15 @@ public class MainActivity extends AppCompatActivity {
 
     /*
     * Features to implement:
-    * 1. if expiry date past current date then present EXPIRED
-    * 2. amount option presented next to amount on list
-    * 3. Edit item in list by presenting new view with editable details and save option --DONE-- but i need to make back button working/finish activity
+    * 1. if expiry date past current date then present EXPIRED --DONE--
+    * 2. amount option presented next to amount on list --DONE--
+    * 3. Edit item in list by presenting new view with editable details and save option --DONE--
     * 4. save product on app memory!!! ---DONE---
-    * 5. delete item from fridge (I need to add id to product and remove it from db by id)
+    * 5. delete item from fridge (I need to add id to product and remove it from db by id) --DONE--
     * 6. scan barcode to add an item
     * 7. improve design
     * 8. load data from db every time user refreshes view (check first if no of items in array is different than in db???) --DONE--
+    * 9. Make data in a row to be one liner. CHaracter limits? --DONE--
     * */
 
     private HashMap<String, ArrayList<Product>> productsByCategories = new HashMap<>();
