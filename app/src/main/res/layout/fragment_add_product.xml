@@ -12,33 +12,47 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/scannerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="115dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="115dp"
+            android:drawableLeft="@drawable/scanner_icon"
+            android:text="Scan"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/nameTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="210dp"
+            android:layout_marginTop="60dp"
             android:text="Name: "
             android:textColor="@color/dark_blue"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/scannerButton" />
 
         <EditText
             android:id="@+id/nameOfAddedProduct"
             android:layout_width="0dp"
             android:layout_height="47dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="20dp"
-            android:gravity="center"
             android:focusable="auto"
+            android:gravity="center"
             android:hint="Enter product name"
             android:inputType="text"
             android:maxLength="17"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/nameTxt"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/scannerButton" />
 
         <TextView
             android:id="@+id/categoryTxt"
@@ -170,6 +184,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

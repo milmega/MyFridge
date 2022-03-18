@@ -16,6 +16,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myfridge.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     * 7. improve design
     * 8. load data from db every time user refreshes view (check first if no of items in array is different than in db???) --DONE--
     * 9. Make data in a row to be one liner. CHaracter limits? --DONE--
+    * 10. View lock orientation - ONLY VERTICAL
     * */
 
     private HashMap<String, ArrayList<Product>> productsByCategories = new HashMap<>();
@@ -123,5 +126,20 @@ public class MainActivity extends AppCompatActivity {
         allProducts.add(product);
         productsByCategories.put(product.getCategory(), listByCategory);
         productsByCategories.put("All", allProducts);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+        if(intentResult.getContents() != null){
+            Toast.makeText(this, intentResult.getContents(), Toast.LENGTH_SHORT).show();
+
+        }
+        else {
+            Toast.makeText(this.getApplicationContext(), "Try Again!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

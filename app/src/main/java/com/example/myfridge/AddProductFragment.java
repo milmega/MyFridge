@@ -1,9 +1,11 @@
 package com.example.myfridge;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.renderscript.ScriptGroup;
@@ -23,6 +25,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -38,6 +43,7 @@ public class AddProductFragment extends Fragment implements AdapterView.OnItemSe
     EditText amountEditTxt;
     RadioGroup amountUnits;
     RadioButton checkedButton;
+    Button scannerButton;
 
     //DatePickerDialog.OnDateSetListener setListener;
 
@@ -46,6 +52,19 @@ public class AddProductFragment extends Fragment implements AdapterView.OnItemSe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_product, container, false);
+
+        //regarding scanner button
+        scannerButton = view.findViewById(R.id.scannerButton);
+        scannerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
+                intentIntegrator.setPrompt("For flash use volume up key");
+                intentIntegrator.setOrientationLocked(true);
+                intentIntegrator.setCaptureActivity(Capture.class);
+                intentIntegrator.initiateScan();
+            }
+        });
 
         //regarding name edit text
         productName = view.findViewById(R.id.nameOfAddedProduct);
@@ -112,9 +131,11 @@ public class AddProductFragment extends Fragment implements AdapterView.OnItemSe
         return view;
     }
 
+
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //regarding spinner adapter. DO i need it?
+
     }
 
     @Override
