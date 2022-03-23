@@ -1,14 +1,7 @@
 package com.example.myfridge;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.renderscript.ScriptGroup;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,10 +18,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
+import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
+import com.google.zxing.integration.android.IntentIntegrator;
+
 import java.util.Calendar;
 
 public class AddProductFragment extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -131,7 +124,15 @@ public class AddProductFragment extends Fragment implements AdapterView.OnItemSe
         return view;
     }
 
-
+    public void setInfo(String nameInfo, String categoryInfo, String weightInfo){
+        Log.i("--test--", "/"+nameInfo);
+        if(nameInfo != null)
+            productName.setText(nameInfo.substring(0,20));
+        else
+            productName.setText("problem");
+        if(weightInfo != null)
+            amountEditTxt.setText(weightInfo);
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

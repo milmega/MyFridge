@@ -2,8 +2,6 @@ package com.example.myfridge;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -15,7 +13,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myfridge.databinding.ActivityMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -26,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*
     * Features to implement:
-    * 1. if expiry date past current date then present EXPIRED --DONE--
+    * 1. if expiry date past current date then present EXPIRED change it to expire after today
     * 2. amount option presented next to amount on list --DONE--
     * 3. Edit item in list by presenting new view with editable details and save option --DONE--
     * 4. save product on app memory!!! ---DONE---
@@ -35,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     * 7. improve design
     * 8. load data from db every time user refreshes view (check first if no of items in array is different than in db???) --DONE--
     * 9. Make data in a row to be one liner. CHaracter limits? --DONE--
-    * 10. View lock orientation - ONLY VERTICAL
+    * 10. View lock orientation - ONLY VERTICAL --DONE--
     * */
 
     private HashMap<String, ArrayList<Product>> productsByCategories = new HashMap<>();
@@ -52,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         myDB = new DatabaseHelper(MainActivity.this);
         replaceFragment(new MyFridgeFragment());
-
 
         binding.bottomNavigationBar.setOnItemSelectedListener(item -> {
 
@@ -73,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+    }
+
+    public void showToast(String message){
+        Log.i("--test--","+"+message);
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     public void replaceFragment(Fragment fragment){
@@ -131,15 +132,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
         if(intentResult.getContents() != null){
-            Toast.makeText(this, intentResult.getContents(), Toast.LENGTH_SHORT).show();
-
+            Log.i("--test--", intentResult.getContents());
+            Sample sample = new Sample(intentResult.getContents(), this.getApplicationContext(), this);
+            sample.start();
         }
         else {
             Toast.makeText(this.getApplicationContext(), "Try Again!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void fillFormUsingJSON(String name, String category, String weight){
+        AddProductFragment updated = new AddProductFragment();
+        updated.setInfo(name, category, weight);
+        replaceFragment(updated);
     }
 }
