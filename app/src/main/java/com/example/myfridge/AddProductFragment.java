@@ -3,7 +3,6 @@ package com.example.myfridge;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,8 +123,7 @@ public class AddProductFragment extends Fragment implements AdapterView.OnItemSe
         return view;
     }
 
-    public void setInfo(String nameInfo, String categoryInfo, String weightInfo){
-        Log.i("--test--", "/"+nameInfo);
+    public void setInfo(String nameInfo, String weightInfo){
         if(nameInfo != null)
             productName.setText(nameInfo.substring(0,20));
         else

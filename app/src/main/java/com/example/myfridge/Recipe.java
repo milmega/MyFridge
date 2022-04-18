@@ -1,17 +1,21 @@
 package com.example.myfridge;
 
-import android.media.Image;
-
 import java.util.ArrayList;
 
 public class Recipe {
     private String name;
-    private Image photo;
+    private String photo;
     private String description;
     private ArrayList<Product>products;
+    private int servingsNumber;
+    private int likes;
+    private int time;
 
-    public Recipe(String name){
+    public Recipe(String name, int servingsNumber, int likes, int time){
         this.name = name;
+        this.servingsNumber = servingsNumber;
+        this.likes = likes;
+        this.time = time;
     }
 
     public String getName() {
@@ -20,10 +24,10 @@ public class Recipe {
     public void setName(String name) {
         this.name = name;
     }
-    public Image getPhoto() {
+    public String getPhoto() {
         return photo;
     }
-    public void setPhoto(Image photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
     public String getDescription() {
@@ -37,5 +41,29 @@ public class Recipe {
     }
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setServingsNumber(int servingsNumber) {
+        this.servingsNumber = servingsNumber;
+    }
+
+    public int getServingsNumber() {
+        return servingsNumber;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 }

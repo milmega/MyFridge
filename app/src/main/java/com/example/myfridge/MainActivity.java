@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void fillFormUsingJSON(String name, String category, String weight){
         AddProductFragment updated = new AddProductFragment();
-        updated.setInfo(name, category, weight);
+        updated.setInfo(name, weight);
         replaceFragment(updated);
     }
 }
