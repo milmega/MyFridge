@@ -2,12 +2,7 @@ package com.example.myfridge;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +17,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.fragment.app.Fragment;
+
 import java.util.Calendar;
 
 public class UpdateFragment extends Fragment {
@@ -31,30 +29,32 @@ public class UpdateFragment extends Fragment {
     Context context;
 
     TextView productName;
-    //TextView category;
     EditText expiryDate;
     Button updateButton;
     EditText amountEditTxt;
     RadioGroup amountUnits;
-    //RadioButton checkedButton;
 
     String id, name, category, amount, unit, dateOfExpiry;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                ((MainActivity)getActivity()).replaceFragment(new MyFridgeFragment());
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
         View view = inflater.inflate(R.layout.fragment_update, container, false);
 
         context = view.getContext();
-
-
         productName = view.findViewById(R.id.nameOfAddedProductUpdateView);
 
         //regarding amount
         amountEditTxt = view.findViewById(R.id.amountEditTxtUpdateView);
         amountUnits = view.findViewById(R.id.radioGroupUpdateView);
-        //checkedButton = findViewById(amountUnits.getCheckedRadioButtonId());
 
         //regarding category spinner
         spinner = view.findViewById(R.id.spinnerUpdateView);

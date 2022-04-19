@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -32,11 +33,16 @@ public class RecipeFragment extends Fragment {
     ArrayList<FullRecipeResponse>recipes;
     int responseSize = 0;
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                ((MainActivity)getActivity()).replaceFragment(new MyFridgeFragment());
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_recipe, container, false);
         mainView = view;
@@ -45,13 +51,17 @@ public class RecipeFragment extends Fragment {
         dialog.setTitle("Loading...");
         recipes = new ArrayList<>();
 
-        //addRecipes();
+        if(((MainActivity)getActivity()).getProductsList("All").size() == 0){
+            dialog.dismiss();
+
+        }
+
         setIDManager();
         return view;
     }
 
     private void setIDManager(){
-        manager = new RequestManager(getContext());
+        manager = new RequestManager(getContext(), getActivity());
         manager.getRecipeId(idListener);
         dialog.show();
     }
@@ -88,7 +98,7 @@ public class RecipeFragment extends Fragment {
             dialog.dismiss();
             recipes.add(recipe);
             if(responseSize == recipes.size()){
-                adapter = new RecipeRecyclerAdapter(getContext(), recipes, onCLicklistener); //instead recipe array should be call from api like response.recipes
+                adapter = new RecipeRecyclerAdapter(getContext(), recipes, onCLicklistener);
                 recyclerView.setAdapter(adapter);
             }
         }
@@ -110,9 +120,7 @@ public class RecipeFragment extends Fragment {
             }
             ArrayList<String> instruction = new ArrayList<>();
             for(int i = 0; i < recipe.analyzedInstructions.size(); i++){
-                //Log.i("--test--", "krok: " + recipe.analyzedInstructions.get(i));
                 for(int j = 0; j < recipe.analyzedInstructions.get(i).steps.size(); j++){
-                    //Log.i("--test--", "krok " + j + " - " + recipe.analyzedInstructions.get(i).steps.get(j).step);
                     instruction.add(recipe.analyzedInstructions.get(i).steps.get(j).step);
                 }
             }
@@ -130,8 +138,6 @@ public class RecipeFragment extends Fragment {
             RecipeDetailsFragment recipeDetailsFragment = new RecipeDetailsFragment();
             recipeDetailsFragment.setArguments(bundle);
             appActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, recipeDetailsFragment).addToBackStack(null).commit();
-
-
         }
     };
 }

@@ -72,12 +72,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showToast(String message){
-        Log.i("--test--","+"+message);
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     public void replaceFragment(Fragment fragment){
-        storeDataInArray(); //whenever fragment is changed, data is updated
+        storeDataInArray();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
@@ -110,11 +109,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         super.onBackPressed();
+        Log.i("--test--","powrot");
         replaceFragment(new MyFridgeFragment());
-    }
+    }*/
 
     public ArrayList<Product> getProductsList(String title){
         return productsByCategories.get(title);

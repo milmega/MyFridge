@@ -1,5 +1,6 @@
 package com.example.myfridge;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.example.myfridge.Listeners.RecipeIDResponseListener;
@@ -20,15 +21,30 @@ import retrofit2.http.Query;
 
 public class RequestManager {
     Context context;
+    Activity activity;
     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.spoonacular.com").addConverterFactory(GsonConverterFactory.create()).build();
 
-    public RequestManager(Context context){
+    public RequestManager(Context context, Activity activity){
         this.context = context;
+        this.activity = activity;
+    }
+
+    private String getIngredients(){
+        ArrayList<Product>products = ((MainActivity) activity).getProductsList("All");
+        String ingredients = "";
+
+        for(int i = 0; i < products.size(); i++){
+            ingredients += products.get(i).getName() + ",";
+        }
+        return  ingredients;
     }
 
     public void getRecipeId(RecipeIDResponseListener listener){
         RequestManager.CallRecipeByIngredients callRecipe = retrofit.create(RequestManager.CallRecipeByIngredients.class);
-        Call<ArrayList<RecipeIDResponse>> call = callRecipe.callRecipeId(context.getString(R.string.api_key), "chicken,potatoes,pasta,milk,cheese",
+        String ingredients = getIngredients();
+        if(ingredients.equals(""))
+            return;
+        Call<ArrayList<RecipeIDResponse>> call = callRecipe.callRecipeId(context.getString(R.string.api_key), ingredients,
                 "10", true, "1", true);
         call.enqueue(new Callback<ArrayList<RecipeIDResponse>>() {
             @Override
