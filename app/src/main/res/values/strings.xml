@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">MyFridge</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="api_key">6900134875c64b3ab5681e1e222064f7</string>>
+    <string name="api_key1">6900134875c64b3ab5681e1e222064f7</string>>
+    <string name="api_key">208552f1d9784aaaa6a3247861550e23</string>>
     <string-array name="categories">
         <item>--------</item>
         <item>Dairy</item>

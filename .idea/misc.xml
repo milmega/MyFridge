@@ -7,8 +7,11 @@
         <entry key="..\:/Computer Science/Second Year/COMP 208/MyFridge/app/src/main/res/drawable/servings_icon.xml" value="0.1865" />
         <entry key="..\:/Computer Science/Second Year/COMP 208/MyFridge/app/src/main/res/layout/fragment_category.xml" value="0.12158054711246201" />
         <entry key="..\:/Computer Science/Second Year/COMP 208/MyFridge/app/src/main/res/layout/fragment_recipe.xml" value="0.25" />
+        <entry key="..\:/Computer Science/Second Year/COMP 208/MyFridge/app/src/main/res/layout/fragment_recipe_details.xml" value="0.16" />
         <entry key="..\:/Computer Science/Second Year/COMP 208/MyFridge/app/src/main/res/layout/fragment_shopping_list.xml" value="0.25" />
+        <entry key="..\:/Computer Science/Second Year/COMP 208/MyFridge/app/src/main/res/layout/list_items.xml" value="0.1213768115942029" />
         <entry key="..\:/Computer Science/Second Year/COMP 208/MyFridge/app/src/main/res/layout/list_recipe.xml" value="0.4" />
+        <entry key="..\:/Computer Science/Second Year/COMP 208/MyFridge/app/src/main/res/layout/list_steps.xml" value="0.264" />
       </map>
     </option>
   </component>
