@@ -8,12 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,6 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         private TextView quantitytxt;
         private TextView unittxt;
         private ImageButton deleteButton;
+        private ImageView categoryIcon;
         LinearLayout itemRow;
 
         public MyViewHolder(final View view){
@@ -46,6 +50,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             quantitytxt = view.findViewById(R.id.quantityID);
             unittxt = view.findViewById(R.id.unitID);
             deleteButton = view.findViewById(R.id.deleteButton);
+            categoryIcon = view.findViewById(R.id.foodIcon);
             itemRow = view.findViewById(R.id.list_item);
         }
     }
@@ -59,7 +64,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         int pos = holder.getAdapterPosition();
         String name = productsList.get(pos).getName();
         String expiryDate = productsList.get(pos).getDateOfExpiry();
@@ -107,6 +112,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                 ((MainActivity) activity).replaceFragment(new MyFridgeFragment());
             }
         });
+
+        if(productsList.get(pos).getCategory().equals("Dairy"))
+            Picasso.get().load(R.drawable.dairy_icon).into(holder.categoryIcon);
+        else if(productsList.get(pos).getCategory().equals("Meat"))
+            Picasso.get().load(R.drawable.meat_icon).into(holder.categoryIcon);
+        else if(productsList.get(pos).getCategory().equals("Fruits"))
+            Picasso.get().load(R.drawable.fruit_icon).into(holder.categoryIcon);
+        else if(productsList.get(pos).getCategory().equals("Vegetables"))
+            Picasso.get().load(R.drawable.vegetables_icon).into(holder.categoryIcon);
+        else if(productsList.get(pos).getCategory().equals("Others"))
+            Picasso.get().load(R.drawable.others_icon).into(holder.categoryIcon);
+
     }
 
     @Override

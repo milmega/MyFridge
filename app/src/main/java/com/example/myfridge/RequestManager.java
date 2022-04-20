@@ -40,7 +40,7 @@ public class RequestManager {
     }
 
     public void getRecipeId(RecipeIDResponseListener listener){
-        RequestManager.CallRecipeByIngredients callRecipe = retrofit.create(RequestManager.CallRecipeByIngredients.class);
+        CallRecipeByIngredients callRecipe = retrofit.create(RequestManager.CallRecipeByIngredients.class);
         String ingredients = getIngredients();
         if(ingredients.equals(""))
             return;
@@ -80,7 +80,6 @@ public class RequestManager {
                 listener.didError(t.getMessage());
             }
         });
-
     }
 
     private interface CallRecipeByID{
